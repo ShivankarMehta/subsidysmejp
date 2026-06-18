@@ -26,6 +26,34 @@ const quickFilters = [
   { label: { en: "Local", ja: "自治体" }, value: "local" },
 ];
 
+const seoLinks = [
+  {
+    href: "/ja/chusho-kigyo-hojokin",
+    label: { en: "SME subsidies in Japanese", ja: "中小企業補助金ガイド" },
+    text: { en: "Japanese guide for SME grants", ja: "日本語で主要な中小企業補助金を確認" },
+  },
+  {
+    href: "/ja/koyo-joseikin",
+    label: { en: "Employment grants in Japanese", ja: "雇用関係助成金ガイド" },
+    text: { en: "Hiring, training, and wage support", ja: "採用・研修・賃上げ支援を確認" },
+  },
+  {
+    href: "/en/sme-subsidies-japan",
+    label: { en: "SME Subsidies Japan", ja: "SME Subsidies Japan" },
+    text: { en: "English guide for Japan SME grants", ja: "英語で日本の中小企業補助金を確認" },
+  },
+  {
+    href: "/en/japan-employer-grants",
+    label: { en: "Japan Employer Grants", ja: "Japan Employer Grants" },
+    text: { en: "English guide for employer subsidies", ja: "英語で雇用助成金を確認" },
+  },
+  {
+    href: "/en/foreign-employee-subsidies-japan",
+    label: { en: "Foreign Employee Support", ja: "Foreign Employee Support" },
+    text: { en: "Foreign staff and foreign-owned company support", ja: "外国人従業員・外資系企業向け支援" },
+  },
+];
+
 const ui = {
   en: {
     lastChecked: "Admin subsidy map · last checked 2026-06-17",
@@ -57,6 +85,7 @@ const ui = {
     localTitle: "Where admins should check by region",
     beforeApplying: "Before applying",
     checklist: "Admin checklist",
+    topicPages: "SEO topic pages",
   },
   ja: {
     lastChecked: "管理用補助金マップ・最終確認日 2026-06-17",
@@ -88,6 +117,7 @@ const ui = {
     localTitle: "管理者が地域別に確認すべきサイト",
     beforeApplying: "申請前",
     checklist: "管理チェックリスト",
+    topicPages: "検索向けガイド",
   },
 } satisfies Record<Language, Record<string, string>>;
 
@@ -220,6 +250,16 @@ export default function Home() {
           <p>{copy.foreignRelated}</p>
         </div>
       </section>
+
+      <nav className="topicBand" aria-label={copy.topicPages}>
+        {seoLinks.map((link) => (
+          <a href={link.href} key={link.href}>
+            <strong>{link.label[language]}</strong>
+            <span>{link.text[language]}</span>
+            <ArrowUpRight size={15} />
+          </a>
+        ))}
+      </nav>
 
       <section className="workspace">
         <aside className="controlPanel" aria-label={copy.filters}>
